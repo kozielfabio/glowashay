@@ -488,12 +488,31 @@
   .results { background: var(--white); }
   .results__head { margin-bottom: 44px; text-align: center; }
   .results__head .section-title { margin: 12px auto 0; }
-  .results-grid {
-    display: grid; gap: 22px;
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 900px; margin-inline: auto;
+  .results-carousel {
+    position: relative;
+    max-width: 720px;
+    margin-inline: auto;
+    overflow: hidden;
   }
-  @media (max-width: 700px) { .results-grid { grid-template-columns: 1fr; max-width: 480px; } }
+  .results-track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 8px;
+    cursor: grab;
+  }
+  .results-track::-webkit-scrollbar { display: none; }
+  .results-track.is-dragging { cursor: grabbing; scroll-snap-type: none; }
+  .transformation {
+    flex: 0 0 min(85%, 340px);
+    scroll-snap-align: center;
+  }
+  @media (min-width: 700px) {
+    .transformation { flex: 0 0 min(70%, 420px); }
+  }
   .transformation__media {
     position: relative;
     overflow: hidden;
@@ -506,9 +525,9 @@
     height: auto;
     display: block;
     object-fit: contain;
-    transition: transform 0.6s var(--ease);
+    pointer-events: none;
+    user-select: none;
   }
-  .transformation:hover .transformation__media img { transform: scale(1.02); }
   .transformation__placeholder {
     position: absolute; inset: 0;
     display: none; align-items: center; justify-content: center;
@@ -521,6 +540,32 @@
     color: var(--ink-muted);
   }
   .transformation__caption span { color: var(--pink-deep); }
+  .results-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .results-dot {
+    width: 8px; height: 8px;
+    border-radius: 999px;
+    background: var(--border-soft);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .results-dot.is-active {
+    background: var(--pink-deep);
+    transform: scale(1.25);
+  }
+  .results-hint {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+  }
 
   /* ========== PROBLEM ========== */
   .problem { background: var(--blush); }
@@ -602,8 +647,10 @@
   }
   .team-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+    max-width: 720px;
+    margin-inline: auto;
   }
   .team-card {
     background: var(--blush);
@@ -1080,47 +1127,51 @@
       <div class="eyebrow reveal-line">Prova real</div>
       <h2 class="section-title reveal-line">Elas pararam de se esconder. E o espelho respondeu.</h2>
     </div>
-    <div class="results-grid">
-      <figure class="transformation reveal-fade">
-        <div class="transformation__media">
-          <img src="src/img/antesedepois1.png" alt="Antes e depois — transformação 01" loading="lazy"
-               onerror="this.style.display='none'; this.parentElement.querySelector('.transformation__placeholder').style.display='flex';">
-          <div class="transformation__placeholder">[ Antes / Depois ]</div>
-        </div>
-        <div class="transformation__caption">Transformação <span>01</span></div>
-      </figure>
-      <figure class="transformation reveal-fade">
-        <div class="transformation__media">
-          <img src="src/img/1.png" alt="Antes e depois — cabelo e presença" loading="lazy"
-               onerror="this.style.display='none'; this.parentElement.querySelector('.transformation__placeholder').style.display='flex';">
-          <div class="transformation__placeholder">[ Antes / Depois ]</div>
-        </div>
-        <div class="transformation__caption">Cabelo + presença <span>02</span></div>
-      </figure>
-      <figure class="transformation reveal-fade">
-        <div class="transformation__media">
-          <img src="src/img/2.png" alt="Antes e depois — visual e confiança" loading="lazy"
-               onerror="this.style.display='none'; this.parentElement.querySelector('.transformation__placeholder').style.display='flex';">
-          <div class="transformation__placeholder">[ Antes / Depois ]</div>
-        </div>
-        <div class="transformation__caption">Visual + confiança <span>03</span></div>
-      </figure>
-      <figure class="transformation reveal-fade">
-        <div class="transformation__media">
-          <img src="src/img/3.png" alt="Antes e depois — estilo e brilho" loading="lazy"
-               onerror="this.style.display='none'; this.parentElement.querySelector('.transformation__placeholder').style.display='flex';">
-          <div class="transformation__placeholder">[ Antes / Depois ]</div>
-        </div>
-        <div class="transformation__caption">Estilo + brilho <span>04</span></div>
-      </figure>
-      <figure class="transformation reveal-fade">
-        <div class="transformation__media">
-          <img src="src/img/4.png" alt="Antes e depois — glow e sofisticação" loading="lazy"
-               onerror="this.style.display='none'; this.parentElement.querySelector('.transformation__placeholder').style.display='flex';">
-          <div class="transformation__placeholder">[ Antes / Depois ]</div>
-        </div>
-        <div class="transformation__caption">Glow + sofisticação <span>05</span></div>
-      </figure>
+    <div class="results-carousel reveal-fade">
+      <div class="results-track" id="resultsTrack">
+        <figure class="transformation">
+          <div class="transformation__media">
+            <img src="src/img/antesedepois1.png" alt="Antes e depois — transformação 01" loading="lazy"
+                 onerror="this.style.display='none'; this.parentElement.querySelector('.transformation__placeholder').style.display='flex';">
+            <div class="transformation__placeholder">[ Antes / Depois ]</div>
+          </div>
+          <div class="transformation__caption">Transformação <span>01</span></div>
+        </figure>
+        <figure class="transformation">
+          <div class="transformation__media">
+            <img src="src/img/1.png" alt="Antes e depois — cabelo e presença" loading="lazy"
+                 onerror="this.style.display='none'; this.parentElement.querySelector('.transformation__placeholder').style.display='flex';">
+            <div class="transformation__placeholder">[ Antes / Depois ]</div>
+          </div>
+          <div class="transformation__caption">Cabelo + presença <span>02</span></div>
+        </figure>
+        <figure class="transformation">
+          <div class="transformation__media">
+            <img src="src/img/2.png" alt="Antes e depois — visual e confiança" loading="lazy"
+                 onerror="this.style.display='none'; this.parentElement.querySelector('.transformation__placeholder').style.display='flex';">
+            <div class="transformation__placeholder">[ Antes / Depois ]</div>
+          </div>
+          <div class="transformation__caption">Visual + confiança <span>03</span></div>
+        </figure>
+        <figure class="transformation">
+          <div class="transformation__media">
+            <img src="src/img/3.png" alt="Antes e depois — estilo e brilho" loading="lazy"
+                 onerror="this.style.display='none'; this.parentElement.querySelector('.transformation__placeholder').style.display='flex';">
+            <div class="transformation__placeholder">[ Antes / Depois ]</div>
+          </div>
+          <div class="transformation__caption">Estilo + brilho <span>04</span></div>
+        </figure>
+        <figure class="transformation">
+          <div class="transformation__media">
+            <img src="src/img/4.png" alt="Antes e depois — glow e sofisticação" loading="lazy"
+                 onerror="this.style.display='none'; this.parentElement.querySelector('.transformation__placeholder').style.display='flex';">
+            <div class="transformation__placeholder">[ Antes / Depois ]</div>
+          </div>
+          <div class="transformation__caption">Glow + sofisticação <span>05</span></div>
+        </figure>
+      </div>
+      <div class="results-dots" id="resultsDots" aria-hidden="true"></div>
+      <p class="results-hint">Deslize para ver mais →</p>
     </div>
     <div class="section-cta reveal-fade">
       <a href="https://pay.cakto.com.br/cxoxpq5_1126580?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener">EU TAMBÉM QUERO ME OLHAR ASSIM →</a>
@@ -1162,16 +1213,16 @@
 <section class="mentor">
   <div class="wrap team" style="margin-top:0; margin-bottom:0;">
     <h3 class="team__title reveal-line">Especialista GLOWA</h3>
-    <p class="team__subtitle reveal-fade">Quem caminha com você em estilo, presença e maquiagem.</p>
-    <div class="team-grid" style="grid-template-columns: 1fr; max-width: 320px; margin-inline: auto;">
+    <p class="team__subtitle reveal-fade">Quem caminha com você em pele, cabelo e postura.</p>
+    <div class="team-grid" style="grid-template-columns: 1fr; max-width: 320px;">
       <article class="team-card reveal-fade">
         <div class="team-card__photo">
-          <img src="src/img/shar.jpg" alt="Shay — Especialista em estilo e maquiagem" loading="lazy">
+          <img src="src/img/shar.jpg" alt="Shay — Especialista em pele, cabelo e postura" loading="lazy">
         </div>
         <div class="team-card__body">
           <div class="team-card__name">Shay</div>
-          <div class="team-card__role">Estilo · Presença · Maquiagem</div>
-          <p class="team-card__text">Shay contribui com um olhar sofisticado e atual, ensinando como valorizar a própria imagem com autenticidade e confiança.</p>
+          <div class="team-card__role">Pele · Cabelo · Postura</div>
+          <p class="team-card__text">Shay ensina cuidado com a pele, o cabelo e a postura — detalhes que elevam a presença e fazem a diferença no dia a dia.</p>
         </div>
       </article>
     </div>
@@ -1433,6 +1484,114 @@
   }, { threshold: 0.18, rootMargin: '0px 0px -40px 0px' });
   document.getElementById('glowaName').setAttribute('data-delay', '200');
   revealables.forEach(el => io.observe(el));
+
+  /* Results carousel — autoplay + swipe */
+  (function () {
+    const track = document.getElementById('resultsTrack');
+    const dotsWrap = document.getElementById('resultsDots');
+    if (!track) return;
+    const slides = Array.from(track.querySelectorAll('.transformation'));
+    if (!slides.length) return;
+
+    slides.forEach((_, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'results-dot' + (i === 0 ? ' is-active' : '');
+      btn.setAttribute('aria-label', 'Ir para transformação ' + (i + 1));
+      btn.addEventListener('click', () => {
+        stopAuto();
+        goTo(i);
+        startAuto();
+      });
+      dotsWrap.appendChild(btn);
+    });
+    const dots = Array.from(dotsWrap.querySelectorAll('.results-dot'));
+
+    let index = 0;
+    let autoTimer = null;
+    let userPaused = false;
+
+    function slideWidth() {
+      const s = slides[0];
+      const gap = 16;
+      return s.getBoundingClientRect().width + gap;
+    }
+
+    function goTo(i) {
+      index = (i + slides.length) % slides.length;
+      track.scrollTo({ left: index * slideWidth(), behavior: 'smooth' });
+      dots.forEach((d, di) => d.classList.toggle('is-active', di === index));
+    }
+
+    function next() {
+      goTo(index + 1);
+    }
+
+    function startAuto() {
+      stopAuto();
+      if (userPaused) return;
+      autoTimer = setInterval(next, 3200);
+    }
+    function stopAuto() {
+      if (autoTimer) clearInterval(autoTimer);
+      autoTimer = null;
+    }
+
+    /* Drag / swipe */
+    let isDown = false;
+    let startX = 0;
+    let startScroll = 0;
+    let moved = false;
+
+    track.addEventListener('pointerdown', (e) => {
+      isDown = true;
+      moved = false;
+      userPaused = true;
+      stopAuto();
+      track.classList.add('is-dragging');
+      startX = e.clientX;
+      startScroll = track.scrollLeft;
+      track.setPointerCapture(e.pointerId);
+    });
+    track.addEventListener('pointermove', (e) => {
+      if (!isDown) return;
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) > 4) moved = true;
+      track.scrollLeft = startScroll - dx;
+    });
+    function endDrag(e) {
+      if (!isDown) return;
+      isDown = false;
+      track.classList.remove('is-dragging');
+      const w = slideWidth();
+      index = Math.round(track.scrollLeft / w);
+      index = Math.max(0, Math.min(slides.length - 1, index));
+      goTo(index);
+      setTimeout(() => { userPaused = false; startAuto(); }, 4500);
+    }
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+
+    track.addEventListener('scroll', () => {
+      const w = slideWidth();
+      if (!w) return;
+      const i = Math.round(track.scrollLeft / w);
+      if (i !== index && i >= 0 && i < slides.length) {
+        index = i;
+        dots.forEach((d, di) => d.classList.toggle('is-active', di === index));
+      }
+    }, { passive: true });
+
+    track.addEventListener('touchstart', () => {
+      userPaused = true;
+      stopAuto();
+    }, { passive: true });
+    track.addEventListener('touchend', () => {
+      setTimeout(() => { userPaused = false; startAuto(); }, 4500);
+    }, { passive: true });
+
+    startAuto();
+  })();
 </script>
 </body>
 </html>
