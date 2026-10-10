@@ -930,6 +930,164 @@
   footer a:hover { color: #fff; }
   footer nav { display: flex; gap: 22px; }
 
+
+  /* ========== VOICE NOTE (WhatsApp style) ========== */
+  .voice-section {
+    background: var(--white);
+    padding-block: clamp(36px, 5vw, 56px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .voice-section .wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 18px;
+  }
+  .voice-section__label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pink-deep);
+  }
+  .voice-section__hint {
+    font-size: 14px;
+    color: var(--ink-soft);
+    max-width: 340px;
+    line-height: 1.5;
+  }
+  .voice-note {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: min(100%, 340px);
+    padding: 12px 16px 12px 12px;
+    background: linear-gradient(145deg, #FFF5F8 0%, #FCE8EF 100%);
+    border: 1px solid var(--border-soft);
+    border-radius: 22px 22px 22px 6px;
+    box-shadow:
+      0 8px 28px rgba(184, 92, 120, 0.12),
+      0 1px 0 rgba(255,255,255,0.8) inset;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.25s var(--ease), box-shadow 0.25s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .voice-note:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(184, 92, 120, 0.18);
+  }
+  .voice-note:active { transform: translateY(0); }
+  .voice-note__play {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(160deg, var(--pink-mid), var(--pink-deep));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(184, 92, 120, 0.35);
+    transition: transform 0.2s ease, background 0.2s ease;
+    padding: 0;
+  }
+  .voice-note__play:hover {
+    background: linear-gradient(160deg, var(--pink), var(--pink-mid));
+  }
+  .voice-note__play svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    margin-left: 2px;
+  }
+  .voice-note.is-playing .voice-note__play svg {
+    margin-left: 0;
+  }
+  .voice-note__body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .voice-note__wave {
+    display: flex;
+    align-items: center;
+    gap: 2.5px;
+    height: 28px;
+  }
+  .voice-note__bar {
+    width: 3px;
+    border-radius: 2px;
+    background: var(--pink);
+    opacity: 0.55;
+    transition: height 0.15s ease, opacity 0.15s ease, background 0.2s ease;
+  }
+  .voice-note.is-playing .voice-note__bar {
+    background: var(--pink-deep);
+    opacity: 0.9;
+    animation: voiceBar 0.9s ease-in-out infinite;
+  }
+  .voice-note.is-playing .voice-note__bar:nth-child(1) { animation-delay: 0.05s; }
+  .voice-note.is-playing .voice-note__bar:nth-child(2) { animation-delay: 0.15s; }
+  .voice-note.is-playing .voice-note__bar:nth-child(3) { animation-delay: 0.02s; }
+  .voice-note.is-playing .voice-note__bar:nth-child(4) { animation-delay: 0.22s; }
+  .voice-note.is-playing .voice-note__bar:nth-child(5) { animation-delay: 0.08s; }
+  .voice-note.is-playing .voice-note__bar:nth-child(6) { animation-delay: 0.18s; }
+  .voice-note.is-playing .voice-note__bar:nth-child(7) { animation-delay: 0.04s; }
+  .voice-note.is-playing .voice-note__bar:nth-child(8) { animation-delay: 0.25s; }
+  .voice-note.is-playing .voice-note__bar:nth-child(9) { animation-delay: 0.12s; }
+  .voice-note.is-playing .voice-note__bar:nth-child(10) { animation-delay: 0.06s; }
+  .voice-note.is-playing .voice-note__bar:nth-child(11) { animation-delay: 0.2s; }
+  .voice-note.is-playing .voice-note__bar:nth-child(12) { animation-delay: 0.1s; }
+  .voice-note.is-playing .voice-note__bar:nth-child(13) { animation-delay: 0.16s; }
+  .voice-note.is-playing .voice-note__bar:nth-child(14) { animation-delay: 0.03s; }
+  .voice-note.is-playing .voice-note__bar:nth-child(15) { animation-delay: 0.14s; }
+  .voice-note.is-playing .voice-note__bar:nth-child(16) { animation-delay: 0.09s; }
+  .voice-note.is-playing .voice-note__bar:nth-child(17) { animation-delay: 0.21s; }
+  .voice-note.is-playing .voice-note__bar:nth-child(18) { animation-delay: 0.07s; }
+  .voice-note.is-playing .voice-note__bar:nth-child(19) { animation-delay: 0.17s; }
+  .voice-note.is-playing .voice-note__bar:nth-child(20) { animation-delay: 0.11s; }
+  @keyframes voiceBar {
+    0%, 100% { transform: scaleY(0.45); }
+    50% { transform: scaleY(1); }
+  }
+  .voice-note__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .voice-note__time {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--pink-deep);
+    font-variant-numeric: tabular-nums;
+  }
+  .voice-note__badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .voice-note__mic {
+    position: absolute;
+    bottom: -2px;
+    right: 10px;
+    width: 14px;
+    height: 14px;
+    opacity: 0.35;
+    color: var(--pink-deep);
+  }
+  .voice-note audio { display: none; }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
@@ -937,6 +1095,7 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+    .voice-note.is-playing .voice-note__bar { animation: none; }
   }
 </style>
 </head>
@@ -1116,6 +1275,50 @@
     <div class="section-cta reveal-fade">
       <a href="https://pay.cakto.com.br/cxoxpq5_1126580?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener">EU MEREÇO ME VALORIZAR →</a>
     </div>
+  </div>
+</section>
+
+
+<!-- ÁUDIO DEPOIMENTO — prova social após os pilares -->
+<section class="voice-section" id="audio-investimento">
+  <div class="wrap">
+    <div class="voice-section__label reveal-fade">Ouça quem já investiu em si</div>
+    <div class="voice-note reveal-fade" id="voiceNote" role="button" tabindex="0" aria-label="Ouvir depoimento em áudio">
+      <button class="voice-note__play" id="voicePlay" type="button" aria-label="Reproduzir áudio">
+        <svg id="voicePlayIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <div class="voice-note__body">
+        <div class="voice-note__wave" id="voiceWave" aria-hidden="true">
+          <span class="voice-note__bar" style="height:10px"></span>
+          <span class="voice-note__bar" style="height:16px"></span>
+          <span class="voice-note__bar" style="height:22px"></span>
+          <span class="voice-note__bar" style="height:14px"></span>
+          <span class="voice-note__bar" style="height:26px"></span>
+          <span class="voice-note__bar" style="height:18px"></span>
+          <span class="voice-note__bar" style="height:12px"></span>
+          <span class="voice-note__bar" style="height:24px"></span>
+          <span class="voice-note__bar" style="height:20px"></span>
+          <span class="voice-note__bar" style="height:15px"></span>
+          <span class="voice-note__bar" style="height:28px"></span>
+          <span class="voice-note__bar" style="height:11px"></span>
+          <span class="voice-note__bar" style="height:19px"></span>
+          <span class="voice-note__bar" style="height:23px"></span>
+          <span class="voice-note__bar" style="height:13px"></span>
+          <span class="voice-note__bar" style="height:21px"></span>
+          <span class="voice-note__bar" style="height:17px"></span>
+          <span class="voice-note__bar" style="height:25px"></span>
+          <span class="voice-note__bar" style="height:14px"></span>
+          <span class="voice-note__bar" style="height:9px"></span>
+        </div>
+        <div class="voice-note__meta">
+          <span class="voice-note__time" id="voiceTime">0:00</span>
+          <span class="voice-note__badge">Áudio · Aluna GLOWA</span>
+        </div>
+      </div>
+      <svg class="voice-note__mic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.49 6-3.31 6-6.72h-1.7z"/></svg>
+      <audio id="voiceAudio" preload="metadata" src="src/img/melhorinvestimento.ogg"></audio>
+    </div>
+    <p class="voice-section__hint reveal-fade">“Comprar o GLOWA foi o melhor investimento que eu fiz em mim.” — toque para ouvir</p>
   </div>
 </section>
 
@@ -1585,6 +1788,76 @@
 
     startAuto();
   })();
+
+  /* ========== Voice note (WhatsApp-style) ========== */
+  (function () {
+    const note = document.getElementById('voiceNote');
+    const audio = document.getElementById('voiceAudio');
+    const playBtn = document.getElementById('voicePlay');
+    const playIcon = document.getElementById('voicePlayIcon');
+    const timeEl = document.getElementById('voiceTime');
+    if (!note || !audio || !playBtn) return;
+
+    const iconPlay = '<path d="M8 5v14l11-7z"/>';
+    const iconPause = '<path d="M6 5h4v14H6zm8 0h4v14h-4z"/>';
+
+    function formatTime(s) {
+      if (!isFinite(s) || s < 0) return '0:00';
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60);
+      return m + ':' + String(sec).padStart(2, '0');
+    }
+
+    function updateTime() {
+      const cur = audio.currentTime || 0;
+      const dur = audio.duration;
+      if (isFinite(dur) && dur > 0) {
+        timeEl.textContent = formatTime(cur) + ' / ' + formatTime(dur);
+      } else {
+        timeEl.textContent = formatTime(cur);
+      }
+    }
+
+    function setPlaying(playing) {
+      note.classList.toggle('is-playing', playing);
+      playIcon.innerHTML = playing ? iconPause : iconPlay;
+      playBtn.setAttribute('aria-label', playing ? 'Pausar áudio' : 'Reproduzir áudio');
+    }
+
+    function toggle() {
+      if (audio.paused) {
+        audio.play().then(() => setPlaying(true)).catch(() => {});
+      } else {
+        audio.pause();
+        setPlaying(false);
+      }
+    }
+
+    playBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggle();
+    });
+    note.addEventListener('click', toggle);
+    note.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+
+    audio.addEventListener('timeupdate', updateTime);
+    audio.addEventListener('loadedmetadata', updateTime);
+    audio.addEventListener('ended', () => {
+      setPlaying(false);
+      audio.currentTime = 0;
+      updateTime();
+    });
+    audio.addEventListener('pause', () => {
+      if (!audio.ended) setPlaying(false);
+    });
+    audio.addEventListener('play', () => setPlaying(true));
+  })();
+
 </script>
 </body>
 </html>
