@@ -930,6 +930,197 @@
   footer a:hover { color: #fff; }
   footer nav { display: flex; gap: 22px; }
 
+  /* ========== PRÉVIA DA ÁREA DE MEMBROS ========== */
+  .members {
+    background:
+      radial-gradient(55% 40% at 12% 0%, rgba(232, 160, 181, 0.30), transparent 70%),
+      radial-gradient(50% 40% at 92% 100%, rgba(212, 122, 150, 0.22), transparent 70%),
+      var(--blush);
+    text-align: center;
+  }
+  .members__head { max-width: 680px; margin-inline: auto; }
+  .members__logo {
+    position: relative;
+    display: inline-block;
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+    font-size: clamp(5rem, 17vw, 9.5rem);
+    line-height: 1.3;
+    padding: 0.22em 0.3em 0.26em;
+    margin: 0 0 -0.1em;
+    overflow: visible;
+    background: linear-gradient(180deg, #F4AEC2 0%, var(--pink-mid) 45%, var(--pink-deep) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    filter: drop-shadow(0 8px 24px rgba(212, 122, 150, 0.45));
+  }
+  .members__logo i {
+    position: absolute;
+    font-style: normal;
+    -webkit-text-fill-color: var(--pink);
+    color: var(--pink);
+    font-family: "Manrope", sans-serif;
+    line-height: 1;
+    animation: membersTwinkle 3s ease-in-out infinite;
+  }
+  .members__logo i:nth-child(1) { top: 6%; right: -2%; font-size: 22px; }
+  .members__logo i:nth-child(2) { top: 30%; left: -4%; font-size: 14px; animation-delay: 1s; }
+  .members__logo i:nth-child(3) { bottom: 14%; right: 6%; font-size: 12px; animation-delay: 1.8s; }
+  @keyframes membersTwinkle {
+    0%, 100% { opacity: 0.35; transform: scale(0.8) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.15) rotate(20deg); }
+  }
+  .members__subtitle {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.25rem, 2.6vw, 1.7rem);
+    color: var(--pink-deep);
+    margin-top: 2px;
+  }
+  .members__head .section-title { margin-top: 22px; }
+  .members__head .lede { margin: 16px auto 0; text-align: center; }
+  .members__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 24px; }
+  .members__chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 16px;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid var(--border-soft);
+    border-radius: 999px;
+    font-size: 12.5px; font-weight: 600; color: var(--pink-deep);
+    box-shadow: 0 4px 14px rgba(184, 92, 120, 0.08);
+  }
+
+  .members__app {
+    margin-top: 44px;
+    text-align: left;
+    background: rgba(255,255,255,0.78);
+    border: 1px solid var(--border-soft);
+    border-radius: 28px;
+    padding: clamp(18px, 3vw, 28px) 0 clamp(20px, 3vw, 28px);
+    box-shadow: 0 30px 80px rgba(184, 92, 120, 0.16), 0 0 0 8px rgba(255,255,255,0.6);
+  }
+  .members__bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    padding: 0 clamp(18px, 3vw, 28px) 18px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .members__brand { display: flex; align-items: center; gap: 12px; }
+  .members__avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(160deg, var(--pink), var(--pink-deep));
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Great Vibes", cursive; font-size: 26px; line-height: 1; padding-bottom: 4px;
+    box-shadow: 0 6px 16px rgba(184, 92, 120, 0.35);
+    flex-shrink: 0;
+  }
+  .members__hello {
+    font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: 1.25rem;
+    color: var(--ink); line-height: 1.1;
+  }
+  .members__hello small {
+    display: block; font-family: "Manrope", sans-serif; font-size: 12px; font-weight: 500;
+    color: var(--ink-muted); margin-top: 3px;
+  }
+  .members__pill {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--pink-deep); background: var(--pink-soft);
+    padding: 8px 14px; border-radius: 999px; white-space: nowrap;
+  }
+  .members__label {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px clamp(18px, 3vw, 28px) 6px;
+    font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: 1.35rem; color: var(--ink);
+  }
+  .members__nav { display: flex; gap: 8px; }
+  .members__arrow {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid var(--border-soft); background: #fff; color: var(--pink-deep);
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    box-shadow: 0 4px 12px rgba(184, 92, 120, 0.12);
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s var(--ease), opacity 0.25s ease;
+  }
+  .members__arrow:hover { background: var(--pink-deep); color: #fff; transform: translateY(-1px); }
+  .members__arrow:disabled { opacity: 0.35; cursor: default; transform: none; background: #fff; color: var(--pink-deep); }
+  .members__arrow svg { width: 16px; height: 16px; }
+
+  .members__track {
+    display: flex;
+    gap: clamp(14px, 2vw, 22px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: clamp(18px, 3vw, 28px);
+    padding: 18px clamp(18px, 3vw, 28px) 26px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    cursor: grab;
+    overscroll-behavior-x: contain;
+  }
+  .members__track::-webkit-scrollbar { display: none; }
+  .members__track.is-dragging { cursor: grabbing; scroll-snap-type: none; }
+
+  .members__card {
+    flex: 0 0 clamp(190px, 64vw, 250px);
+    scroll-snap-align: start;
+    position: relative;
+    aspect-ratio: 2 / 3;
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--pink-soft);
+    border: 1px solid var(--border-soft);
+    box-shadow: 0 14px 34px rgba(184, 92, 120, 0.24);
+    transition: transform 0.4s var(--ease), box-shadow 0.4s ease;
+  }
+  .members__card:hover { transform: translateY(-6px); box-shadow: 0 22px 46px rgba(184, 92, 120, 0.34); }
+  .members__card img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    user-select: none; -webkit-user-drag: none; pointer-events: none;
+  }
+  @media (min-width: 900px) {
+    .members__card, .members__more { flex-basis: clamp(210px, 19vw, 250px); }
+  }
+
+  .members__more {
+    flex: 0 0 clamp(190px, 64vw, 250px);
+    scroll-snap-align: start;
+    aspect-ratio: 2 / 3;
+    border-radius: 18px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; gap: 14px; padding: 26px 20px;
+    background: linear-gradient(160deg, #fff, var(--pink-soft));
+    border: 2px dashed var(--pink);
+    color: var(--ink);
+  }
+  .members__more-plus {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: linear-gradient(160deg, var(--pink), var(--pink-deep));
+    color: #fff; font-size: 30px; font-weight: 300; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 24px rgba(184, 92, 120, 0.35);
+  }
+  .members__more-title { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: 1.45rem; line-height: 1.15; }
+  .members__more-text { font-size: 13px; line-height: 1.55; color: var(--ink-soft); }
+
+  .members__foot { display: flex; align-items: center; gap: 16px; padding: 0 clamp(18px, 3vw, 28px); }
+  .members__progress { flex: 1; height: 6px; border-radius: 999px; background: var(--pink-soft); overflow: hidden; }
+  .members__progress span {
+    display: block; height: 100%; width: 12%; border-radius: 999px;
+    background: linear-gradient(90deg, var(--pink), var(--pink-deep));
+    transition: width 0.2s ease;
+  }
+  .members__hint { font-size: 12px; color: var(--ink-muted); white-space: nowrap; }
+  .members__note {
+    margin: 26px auto 0; max-width: 560px;
+    font-size: 14.5px; line-height: 1.65; color: var(--ink-soft);
+  }
+  .members__note strong { color: var(--pink-deep); }
+  @media (max-width: 560px) {
+    .members__pill, .members__nav, .members__hint { display: none; }
+    .members__app { border-radius: 22px; }
+  }
 
   /* ========== VOICE NOTE (WhatsApp style) ========== */
   .voice-section {
@@ -1003,7 +1194,7 @@
     width: 18px;
     height: 18px;
     fill: currentColor;
-    margin-left: 2px;
+    margin-left: 2px; /* optical center for play triangle */
   }
   .voice-note.is-playing .voice-note__play svg {
     margin-left: 0;
@@ -1278,8 +1469,75 @@
   </div>
 </section>
 
+<!-- PRÉVIA DA ÁREA DE MEMBROS -->
+<section class="members" id="area-de-membros">
+  <div class="wrap">
+    <div class="members__head">
+      <div class="eyebrow reveal-line">Uma prévia do que você vai receber</div>
+      <div class="members__logo reveal-fade" aria-label="Glowa">Glowa<i aria-hidden="true">✦</i><i aria-hidden="true">✦</i><i aria-hidden="true">✦</i></div>
+      <div class="members__subtitle reveal-fade">a sua área de membros</div>
+      <h2 class="section-title reveal-line">Cada módulo é um passo da sua transformação.</h2>
+      <p class="lede reveal-fade">Dá uma espiadinha no que está te esperando lá dentro. Tudo organizado, lindo e fácil de seguir, no seu ritmo, direto do celular ou do computador.</p>
+      <div class="members__chips reveal-fade">
+        <span class="members__chip">♥ 8 módulos</span>
+        <span class="members__chip">♥ Celular e computador</span>
+        <span class="members__chip">♥ Bônus + comunidade</span>
+      </div>
+    </div>
 
-<!-- ÁUDIO DEPOIMENTO — prova social após os pilares -->
+    <div class="members__app reveal-fade">
+      <div class="members__bar">
+        <div class="members__brand">
+          <div class="members__avatar">G</div>
+          <div class="members__hello">Bem-vinda, linda<small>Seu glow começa aqui</small></div>
+        </div>
+        <span class="members__pill">Área de membros</span>
+      </div>
+
+      <div class="members__label">
+        <span>Módulos do método</span>
+        <div class="members__nav">
+          <button class="members__arrow" id="mbPrev" type="button" aria-label="Módulos anteriores">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <button class="members__arrow" id="mbNext" type="button" aria-label="Próximos módulos">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="members__track" id="mbTrack">
+        <figure class="members__card"><img src="src/img/modulo1.jpg" alt="Módulo 1 — Antropometria e Fenótipos" width="1024" height="1536" loading="lazy" draggable="false"></figure>
+        <figure class="members__card"><img src="src/img/modulo2.jpg" alt="Módulo 2 — Cabelo, Harmonia e Volume" width="1024" height="1536" loading="lazy" draggable="false"></figure>
+        <figure class="members__card"><img src="src/img/modulo3.jpg" alt="Módulo 3 — Olhar, Sobrancelha e Maquiagem" width="1024" height="1536" loading="lazy" draggable="false"></figure>
+        <figure class="members__card"><img src="src/img/modulo4.jpg" alt="Módulo 4 — Ossos, Desenvolvimento e Hormônios" width="1024" height="1536" loading="lazy" draggable="false"></figure>
+        <figure class="members__card"><img src="src/img/modulo5.jpg" alt="Módulo 5 — Corpo, Rosto e Composição" width="1024" height="1536" loading="lazy" draggable="false"></figure>
+        <figure class="members__card"><img src="src/img/modulo6.jpg" alt="Módulo 6 — Pele, Ácidos e Rotina" width="1024" height="1536" loading="lazy" draggable="false"></figure>
+        <figure class="members__card"><img src="src/img/modulo7.jpg" alt="Módulo 7 — Presença, Comunicação e Autoridade" width="1024" height="1536" loading="lazy" draggable="false"></figure>
+        <figure class="members__card"><img src="src/img/modulo8.jpg" alt="Módulo 8 — Plano Individualizado" width="1024" height="1536" loading="lazy" draggable="false"></figure>
+        <div class="members__more">
+          <div class="members__more-plus">+</div>
+          <div class="members__more-title">E tem muito mais lá dentro</div>
+          <p class="members__more-text">Aulas, protocolos, bônus e a comunidade de alunas te esperam na área de membros.</p>
+        </div>
+      </div>
+
+      <div class="members__foot">
+        <div class="members__progress" aria-hidden="true"><span id="mbBar"></span></div>
+        <span class="members__hint">Deslize para ver os módulos →</span>
+      </div>
+    </div>
+
+    <p class="members__note reveal-fade">
+      O que você viu aqui é apenas <strong>uma prévia</strong>. O conteúdo completo de cada módulo fica liberado dentro da sua área de membros.
+    </p>
+    <div class="section-cta reveal-fade" style="margin-top:32px;">
+      <a href="https://pay.cakto.com.br/b5jkhmz?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener">QUERO ENTRAR NA ÁREA DE MEMBROS →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ÁUDIO DEPOIMENTO — prova social após a prévia -->
 <section class="voice-section" id="audio-investimento">
   <div class="wrap">
     <div class="voice-section__label reveal-fade">Ouça quem já investiu em si</div>
@@ -1789,6 +2047,58 @@
     startAuto();
   })();
 
+  /* ========== Prévia da área de membros: arrastar, setas e progresso ========== */
+  (function () {
+    const track = document.getElementById('mbTrack');
+    const prev  = document.getElementById('mbPrev');
+    const next  = document.getElementById('mbNext');
+    const bar   = document.getElementById('mbBar');
+    if (!track) return;
+
+    function step() {
+      const card = track.querySelector('.members__card');
+      if (!card) return 240;
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 20;
+      return card.getBoundingClientRect().width + gap;
+    }
+
+    function update() {
+      const max = track.scrollWidth - track.clientWidth;
+      const pct = max > 0 ? track.scrollLeft / max : 1;
+      bar.style.width = (12 + pct * 88) + '%';
+      if (prev) prev.disabled = track.scrollLeft < 4;
+      if (next) next.disabled = track.scrollLeft > max - 4;
+    }
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+
+    if (prev) prev.addEventListener('click', () => track.scrollBy({ left: -step() * 2, behavior: 'smooth' }));
+    if (next) next.addEventListener('click', () => track.scrollBy({ left:  step() * 2, behavior: 'smooth' }));
+
+    /* arrastar com o mouse (no celular o deslize nativo já funciona) */
+    let down = false, startX = 0, startLeft = 0;
+    track.addEventListener('pointerdown', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      down = true; startX = e.clientX; startLeft = track.scrollLeft;
+      track.classList.add('is-dragging');
+      track.setPointerCapture(e.pointerId);
+    });
+    track.addEventListener('pointermove', (e) => {
+      if (!down) return;
+      track.scrollLeft = startLeft - (e.clientX - startX);
+    });
+    function endDrag() {
+      if (!down) return;
+      down = false;
+      track.classList.remove('is-dragging');
+      const s = step();
+      track.scrollTo({ left: Math.round(track.scrollLeft / s) * s, behavior: 'smooth' });
+    }
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+  })();
+
   /* ========== Voice note (WhatsApp-style) ========== */
   (function () {
     const note = document.getElementById('voiceNote');
@@ -1857,7 +2167,6 @@
     });
     audio.addEventListener('play', () => setPlaying(true));
   })();
-
 </script>
 </body>
 </html>
