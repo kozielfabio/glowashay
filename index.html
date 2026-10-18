@@ -163,7 +163,7 @@
 
   /* ========== NAVBAR ========== */
   .navbar {
-    position: fixed; inset-inline: 0; top: 0; z-index: 50;
+    position: fixed; inset-inline: 0; top: var(--promo-h, 0px); z-index: 50;
     background: transparent;
     transition: background 0.35s ease, box-shadow 0.35s ease;
   }
@@ -252,7 +252,7 @@
   .hero {
     min-height: 100svh;
     display: flex; align-items: center; justify-content: center;
-    padding: 130px 0 80px;
+    padding: calc(130px + var(--promo-h, 0px)) 0 80px;
     text-align: center;
     position: relative;
   }
@@ -788,6 +788,16 @@
     font-size: 12.5px; font-weight: 600;
     color: var(--pink-deep);
   }
+  .offer__timer {
+    display: inline-flex; align-items: baseline; gap: 6px; margin-top: 14px;
+    font-family: "Cormorant Garamond", serif; font-size: 1.7rem; font-weight: 600;
+    color: var(--pink-deep); font-variant-numeric: tabular-nums;
+  }
+  .offer__timer[hidden] { display: none; }
+  .offer__timer small {
+    font-family: "Manrope", sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); margin-right: 4px;
+  }
   .offer__list {
     margin: 24px auto 0;
     max-width: 380px;
@@ -807,6 +817,37 @@
     font-size: 12px;
     flex-shrink: 0;
     margin-top: 2px;
+  }
+
+  /* ========== PROMO BAR (fixa no topo) ========== */
+  body.has-promo { --promo-h: 44px; }
+  .promo-bar {
+    position: fixed; top: 0; left: 0; right: 0; height: 44px;
+    z-index: 55;
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+    padding: 0 16px;
+    background: linear-gradient(90deg, var(--pink-deep), var(--pink-mid));
+    color: #fff;
+  }
+  .promo-bar[hidden] { display: none; }
+  .promo-bar__text {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .promo-bar__text span { font-weight: 500; opacity: 0.85; letter-spacing: 0.08em; margin-left: 8px; }
+  .promo-bar__time {
+    font-family: "Cormorant Garamond", serif; font-size: 1.35rem; font-weight: 700;
+    font-variant-numeric: tabular-nums; white-space: nowrap; line-height: 1;
+  }
+  .promo-bar__btn {
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--pink-deep); background: #fff;
+    padding: 7px 14px; border-radius: 999px; white-space: nowrap;
+  }
+  @media (max-width: 640px) {
+    .promo-bar { gap: 12px; }
+    .promo-bar__text { font-size: 10px; letter-spacing: 0.1em; }
+    .promo-bar__text span, .promo-bar__btn { display: none; }
   }
 
   /* ========== GUARANTEE ========== */
@@ -1290,7 +1331,14 @@
   }
 </style>
 </head>
-<body>
+<body class="has-promo">
+
+<!-- BARRA FIXA DA PROMOÇÃO -->
+<div class="promo-bar" id="promoBar">
+  <div class="promo-bar__text"><b>Oferta Victoria’s Secret</b><span>Termina amanhã às 13h</span></div>
+  <div class="promo-bar__time" id="promoTime">--:--:--</div>
+  <a href="https://pay.cakto.com.br/b5jkhmz?affiliate=3rSsf9rF" class="promo-bar__btn" target="_blank" rel="noopener">Aproveitar</a>
+</div>
 
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
@@ -1325,6 +1373,7 @@
   </ul>
   <a href="https://pay.cakto.com.br/b5jkhmz?affiliate=3rSsf9rF" class="btn mobile-menu__cta" target="_blank" rel="noopener">GARANTIR MINHA VAGA</a>
 </div>
+
 
 <!-- HERO -->
 <header class="hero stripes">
@@ -1727,16 +1776,16 @@
 <section class="offer" id="oferta">
   <div class="wrap">
     <div class="offer__inner">
-      <div class="offer__badge reveal-fade">✦ Últimas vagas desta turma</div>
+      <div class="offer__badge reveal-fade" id="offerBadge">✦ Oferta Victoria’s Secret</div>
       <h2 class="section-title reveal-line">Hoje você decide se continua se escondendo ou se assume o seu glow.</h2>
       <p class="lede reveal-fade" style="margin:14px auto 0;text-align:center;">
         Método completo + 6 bônus + comunidade de mulheres que decidiram se priorizar.
       </p>
       <div class="offer__price-block reveal-fade">
-        <div class="offer__from">De R$ 197 por apenas</div>
-        <div class="offer__price"><span>R$</span>47,00</div>
-        <div class="offer__installments">pagamento à vista</div>
-        <div class="offer__urgency">⏰ Oferta por tempo limitado · Vagas reduzidas</div>
+        <div class="offer__from" id="offerFrom">De R$ 47 por apenas</div>
+        <div class="offer__price" id="offerPrice"><span>R$</span>37,00</div>
+        <div class="offer__urgency" id="offerUrgency">Condição especial por conta da Victoria’s Secret, só até amanhã às 13h.</div>
+        <div class="offer__timer" id="offerTimer"><small>Termina em</small><span id="offerTime">--:--:--</span></div>
         <ul class="offer__list">
           <li>Método GLOWA completo (9 módulos)</li>
           <li>Guia de Skincare por Tipo de Pele</li>
@@ -2166,6 +2215,42 @@
       if (!audio.ended) setPlaying(false);
     });
     audio.addEventListener('play', () => setPlaying(true));
+  })();
+
+  /* ========== Promo Victoria's Secret: até 19/10/2026 às 13:00 (Brasília) ========== */
+  (function () {
+    const END = new Date('2026-10-19T13:00:00-03:00').getTime();
+    const bar = document.getElementById('promoBar');
+    const t1 = document.getElementById('promoTime');
+    const t2 = document.getElementById('offerTime');
+    const pad = n => String(n).padStart(2, '0');
+    let timer;
+
+    function endPromo() {
+      clearInterval(timer);
+      if (bar) bar.hidden = true;
+      document.body.classList.remove('has-promo');
+      const timerBox = document.getElementById('offerTimer');
+      if (timerBox) timerBox.hidden = true;
+      document.getElementById('offerBadge').textContent = '✦ Últimas vagas desta turma';
+      document.getElementById('offerFrom').textContent = 'De R$ 197 por apenas';
+      document.getElementById('offerPrice').innerHTML = '<span>R$</span>47,00';
+      document.getElementById('offerUrgency').textContent = '⏰ Oferta por tempo limitado · Vagas reduzidas';
+    }
+
+    function tick() {
+      const left = END - Date.now();
+      if (left <= 0) return endPromo();
+      const h = Math.floor(left / 3600000);
+      const m = Math.floor(left % 3600000 / 60000);
+      const s = Math.floor(left % 60000 / 1000);
+      const txt = pad(h) + ':' + pad(m) + ':' + pad(s);
+      if (t1) t1.textContent = txt;
+      if (t2) t2.textContent = txt;
+    }
+
+    tick();
+    if (END - Date.now() > 0) timer = setInterval(tick, 1000);
   })();
 </script>
 </body>
