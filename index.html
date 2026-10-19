@@ -163,7 +163,7 @@
 
   /* ========== NAVBAR ========== */
   .navbar {
-    position: fixed; inset-inline: 0; top: var(--promo-h, 0px); z-index: 50;
+    position: fixed; inset-inline: 0; top: 0; z-index: 50;
     background: transparent;
     transition: background 0.35s ease, box-shadow 0.35s ease;
   }
@@ -252,7 +252,7 @@
   .hero {
     min-height: 100svh;
     display: flex; align-items: center; justify-content: center;
-    padding: calc(130px + var(--promo-h, 0px)) 0 80px;
+    padding: 130px 0 80px;
     text-align: center;
     position: relative;
   }
@@ -769,8 +769,9 @@
   }
   .offer__from {
     font-size: 13px; color: var(--ink-muted);
-    text-decoration: line-through; margin-bottom: 4px;
+    margin-bottom: 4px;
   }
+  .offer__from s { text-decoration: line-through; }
   .offer__price {
     font-family: "Cormorant Garamond", serif;
     font-size: clamp(2.6rem, 6vw, 3.6rem);
@@ -787,16 +788,6 @@
     margin-top: 14px;
     font-size: 12.5px; font-weight: 600;
     color: var(--pink-deep);
-  }
-  .offer__timer {
-    display: inline-flex; align-items: baseline; gap: 6px; margin-top: 14px;
-    font-family: "Cormorant Garamond", serif; font-size: 1.7rem; font-weight: 600;
-    color: var(--pink-deep); font-variant-numeric: tabular-nums;
-  }
-  .offer__timer[hidden] { display: none; }
-  .offer__timer small {
-    font-family: "Manrope", sans-serif; font-size: 11px; font-weight: 600;
-    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); margin-right: 4px;
   }
   .offer__list {
     margin: 24px auto 0;
@@ -817,37 +808,6 @@
     font-size: 12px;
     flex-shrink: 0;
     margin-top: 2px;
-  }
-
-  /* ========== PROMO BAR (fixa no topo) ========== */
-  body.has-promo { --promo-h: 44px; }
-  .promo-bar {
-    position: fixed; top: 0; left: 0; right: 0; height: 44px;
-    z-index: 55;
-    display: flex; align-items: center; justify-content: center; gap: 16px;
-    padding: 0 16px;
-    background: linear-gradient(90deg, var(--pink-deep), var(--pink-mid));
-    color: #fff;
-  }
-  .promo-bar[hidden] { display: none; }
-  .promo-bar__text {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-    white-space: nowrap;
-  }
-  .promo-bar__text span { font-weight: 500; opacity: 0.85; letter-spacing: 0.08em; margin-left: 8px; }
-  .promo-bar__time {
-    font-family: "Cormorant Garamond", serif; font-size: 1.35rem; font-weight: 700;
-    font-variant-numeric: tabular-nums; white-space: nowrap; line-height: 1;
-  }
-  .promo-bar__btn {
-    font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--pink-deep); background: #fff;
-    padding: 7px 14px; border-radius: 999px; white-space: nowrap;
-  }
-  @media (max-width: 640px) {
-    .promo-bar { gap: 12px; }
-    .promo-bar__text { font-size: 10px; letter-spacing: 0.1em; }
-    .promo-bar__text span, .promo-bar__btn { display: none; }
   }
 
   /* ========== GUARANTEE ========== */
@@ -1331,14 +1291,7 @@
   }
 </style>
 </head>
-<body class="has-promo">
-
-<!-- BARRA FIXA DA PROMOÇÃO -->
-<div class="promo-bar" id="promoBar">
-  <div class="promo-bar__text"><b>Oferta Victoria’s Secret</b><span>Termina hoje às 20h</span></div>
-  <div class="promo-bar__time" id="promoTime">--:--:--</div>
-  <a href="https://pay.cakto.com.br/b5jkhmz?affiliate=3rSsf9rF" class="promo-bar__btn" target="_blank" rel="noopener">Aproveitar</a>
-</div>
+<body>
 
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
@@ -1350,7 +1303,7 @@
       <li><a href="#oferta">Oferta</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
-    <a href="https://pay.cakto.com.br/b5jkhmz?affiliate=3rSsf9rF" class="navbar__cta" target="_blank" rel="noopener">GARANTIR MINHA VAGA</a>
+    <a href="https://pay.cakto.com.br/cxoxpq5_1126580?affiliate=3rSsf9rF" class="navbar__cta" target="_blank" rel="noopener">GARANTIR MINHA VAGA</a>
     <button class="navbar__toggle" id="navToggle" type="button" aria-label="Abrir menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -1371,7 +1324,7 @@
     <li><a href="#oferta">Oferta</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
-  <a href="https://pay.cakto.com.br/b5jkhmz?affiliate=3rSsf9rF" class="btn mobile-menu__cta" target="_blank" rel="noopener">GARANTIR MINHA VAGA</a>
+  <a href="https://pay.cakto.com.br/cxoxpq5_1126580?affiliate=3rSsf9rF" class="btn mobile-menu__cta" target="_blank" rel="noopener">GARANTIR MINHA VAGA</a>
 </div>
 
 
@@ -1391,7 +1344,7 @@
       O método completo de pele, cabelo, estilo e presença para a mulher que decidiu parar de se sentir “menos” e começar a se sentir desejada, confiante e irresistível.
     </p>
     <div class="hero-cta reveal-fade" data-delay="800">
-      <a href="https://pay.cakto.com.br/b5jkhmz?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener">
+      <a href="https://pay.cakto.com.br/cxoxpq5_1126580?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener">
         EU QUERO MEU GLOW UP AGORA →
       </a>
     </div>
@@ -1513,7 +1466,7 @@
       </div>
     </div>
     <div class="section-cta reveal-fade">
-      <a href="https://pay.cakto.com.br/b5jkhmz?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener">EU MEREÇO ME VALORIZAR →</a>
+      <a href="https://pay.cakto.com.br/cxoxpq5_1126580?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener">EU MEREÇO ME VALORIZAR →</a>
     </div>
   </div>
 </section>
@@ -1583,7 +1536,7 @@
       O que você viu aqui é apenas <strong>uma prévia</strong>. O conteúdo completo de cada módulo fica liberado dentro da sua área de membros.
     </p>
     <div class="section-cta reveal-fade" style="margin-top:32px;">
-      <a href="https://pay.cakto.com.br/b5jkhmz?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener">QUERO ENTRAR NA ÁREA DE MEMBROS →</a>
+      <a href="https://pay.cakto.com.br/cxoxpq5_1126580?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener">QUERO ENTRAR NA ÁREA DE MEMBROS →</a>
     </div>
   </div>
 </section>
@@ -1677,7 +1630,7 @@
       </div>
     </div>
     <div class="section-cta reveal-fade">
-      <a href="https://pay.cakto.com.br/b5jkhmz?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener">QUERO TUDO ANTES QUE ACABE →</a>
+      <a href="https://pay.cakto.com.br/cxoxpq5_1126580?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener">QUERO TUDO ANTES QUE ACABE →</a>
     </div>
   </div>
 </section>
@@ -1708,7 +1661,7 @@
       </div>
     </div>
     <div class="section-cta reveal-fade">
-      <a href="https://pay.cakto.com.br/b5jkhmz?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener">CHEGA DE ME DEIXAR POR ÚLTIMO</a>
+      <a href="https://pay.cakto.com.br/cxoxpq5_1126580?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener">CHEGA DE ME DEIXAR POR ÚLTIMO</a>
     </div>
   </div>
 </section>
@@ -1778,16 +1731,15 @@
 <section class="offer" id="oferta">
   <div class="wrap">
     <div class="offer__inner">
-      <div class="offer__badge reveal-fade" id="offerBadge">✦ Oferta Victoria’s Secret</div>
+      <div class="offer__badge reveal-fade">✦ Acesso completo ao GLOWA</div>
       <h2 class="section-title reveal-line">Hoje você decide se continua se escondendo ou se assume o seu glow.</h2>
       <p class="lede reveal-fade" style="margin:14px auto 0;text-align:center;">
         Método completo + 6 bônus + comunidade de mulheres que decidiram se priorizar.
       </p>
       <div class="offer__price-block reveal-fade">
-        <div class="offer__from" id="offerFrom">De R$ 47 por apenas</div>
-        <div class="offer__price" id="offerPrice"><span>R$</span>37,00</div>
-        <div class="offer__urgency" id="offerUrgency">Condição especial por conta da Victoria’s Secret, só até hoje às 20h.</div>
-        <div class="offer__timer" id="offerTimer"><small>Termina em</small><span id="offerTime">--:--:--</span></div>
+        <div class="offer__from">De <s>R$ 197</s> por apenas</div>
+        <div class="offer__price"><span>R$</span>57,00</div>
+        <div class="offer__urgency">Pagamento único · Acesso imediato</div>
         <ul class="offer__list">
           <li>Método GLOWA completo (9 módulos)</li>
           <li>Guia de Skincare por Tipo de Pele</li>
@@ -1799,7 +1751,7 @@
           <li>Garantia de 30 dias</li>
         </ul>
         <div style="margin-top:26px;">
-          <a href="https://pay.cakto.com.br/b5jkhmz?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener" style="width:100%;">
+          <a href="https://pay.cakto.com.br/cxoxpq5_1126580?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener" style="width:100%;">
             SIM. EU GARANTO MINHA VAGA AGORA
           </a>
         </div>
@@ -1821,7 +1773,7 @@
       </div>
       <p class="guarantee__microcopy reveal-fade">Consulte os termos e critérios da garantia para verificar condições, prazo e procedimento de reembolso.</p>
       <div class="guarantee__cta reveal-fade">
-        <a href="https://pay.cakto.com.br/b5jkhmz?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener">ENTRAR SEM RISCO. QUERO AGORA</a>
+        <a href="https://pay.cakto.com.br/cxoxpq5_1126580?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener">ENTRAR SEM RISCO. QUERO AGORA</a>
       </div>
     </div>
     <div class="guarantee__stat reveal-fade">
@@ -1846,7 +1798,7 @@
       <div class="eyebrow reveal-fade" style="margin-bottom:12px;">Última chance de se priorizar</div>
       <h3 class="section-title reveal-line">Você já sabe o que precisa fazer.<br>Agora falta só decidir por você.</h3>
       <div class="faq__transition-cta reveal-fade">
-        <a href="https://pay.cakto.com.br/b5jkhmz?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener">EU JÁ DECIDI. QUERO AGORA</a>
+        <a href="https://pay.cakto.com.br/cxoxpq5_1126580?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener">EU JÁ DECIDI. QUERO AGORA</a>
       </div>
     </div>
   </div>
@@ -1858,7 +1810,7 @@
     <h2 class="section-title reveal-line">Daqui a 30 dias você pode se olhar no espelho<br>e finalmente <span>gostar do que vê.</span></h2>
     <p class="lede reveal-fade">Ou pode continuar no mesmo ciclo de produto aleatório, filtro e frustração. A escolha é sua. O GLOWA já está pronto.</p>
     <div class="cta-final__cta reveal-fade">
-      <a href="https://pay.cakto.com.br/b5jkhmz?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener">HOJE EU ME PRIORIZO. QUERO AGORA</a>
+      <a href="https://pay.cakto.com.br/cxoxpq5_1126580?affiliate=3rSsf9rF" class="btn" target="_blank" rel="noopener">HOJE EU ME PRIORIZO. QUERO AGORA</a>
     </div>
   </div>
 </section>
@@ -2217,42 +2169,6 @@
       if (!audio.ended) setPlaying(false);
     });
     audio.addEventListener('play', () => setPlaying(true));
-  })();
-
-  /* ========== Promo Victoria's Secret: até 19/10/2026 às 20:00 (Brasília) ========== */
-  (function () {
-    const END = new Date('2026-10-19T20:00:00-03:00').getTime();
-    const bar = document.getElementById('promoBar');
-    const t1 = document.getElementById('promoTime');
-    const t2 = document.getElementById('offerTime');
-    const pad = n => String(n).padStart(2, '0');
-    let timer;
-
-    function endPromo() {
-      clearInterval(timer);
-      if (bar) bar.hidden = true;
-      document.body.classList.remove('has-promo');
-      const timerBox = document.getElementById('offerTimer');
-      if (timerBox) timerBox.hidden = true;
-      document.getElementById('offerBadge').textContent = '✦ Últimas vagas desta turma';
-      document.getElementById('offerFrom').textContent = 'De R$ 197 por apenas';
-      document.getElementById('offerPrice').innerHTML = '<span>R$</span>47,00';
-      document.getElementById('offerUrgency').textContent = '⏰ Oferta por tempo limitado · Vagas reduzidas';
-    }
-
-    function tick() {
-      const left = END - Date.now();
-      if (left <= 0) return endPromo();
-      const h = Math.floor(left / 3600000);
-      const m = Math.floor(left % 3600000 / 60000);
-      const s = Math.floor(left % 60000 / 1000);
-      const txt = pad(h) + ':' + pad(m) + ':' + pad(s);
-      if (t1) t1.textContent = txt;
-      if (t2) t2.textContent = txt;
-    }
-
-    tick();
-    if (END - Date.now() > 0) timer = setInterval(tick, 1000);
   })();
 </script>
 </body>
